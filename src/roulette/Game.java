@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Plays a game of roulette.
  * 
- * @author Robert C. Duvall
+ *
  */
 public class Game {
 	// name of the game

@@ -5,7 +5,7 @@ import java.util.Set;
 /**
  * Represents player's attempt to bet on outcome of the roulette wheel's spin.
  * 
- * @author Robert C. Duvall
+ *
  */
 public abstract class Bet {
 	
