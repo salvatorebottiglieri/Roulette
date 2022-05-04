@@ -11,7 +11,7 @@ public abstract class Bet {
 	
 	private String description;
 	private int payout;
-	private Set<String>possibleBets;
+
 	/**
 	 * Constructs a bet with the given name and odds.
 	 * 

@@ -12,11 +12,14 @@ public class Game {
 	private static final String DEFAULT_NAME = "Roulette";
 
 	private Wheel myWheel;
+	UserInterface userInterface;
+
 
 	/**
 	 * Construct the game.
 	 */
-	public Game() {
+	public Game(UserInterface userInterface) {
+		this.userInterface = userInterface;
 		myWheel = new Wheel();
 	}
 
@@ -36,7 +39,7 @@ public class Game {
 	 * @param player
 	 *            one that wants to play a round of the game
 	 */
-	public void play(Gambler player, Set<String> possibileBets,UserInterface userInterface) {
+	public void play(Gambler player, Set<String> possibileBets) {
 		int amount = userInterface.promptRange("How much do you want to bet",
 				0, player.getBankroll());
 
@@ -50,18 +53,20 @@ public class Game {
 		myWheel.spin();
 		userInterface.print("Dropped into " + myWheel.getColor() + " " + myWheel.getNumber());
 
-		amount *= updateAmount(userInterface, bet, choidedBet);
+		if (isWinningBet(bet,choidedBet)){
+			userInterface.print("*** Congratulations :) You win ***");
+			amount *= bet.getPayout();
+		}
+		else{
+			userInterface.print("*** Sorry :( You lose ***");
+			amount *= -1;
+		}
+
 		player.updateBankroll(amount);
 	}
 
-	private int updateAmount(UserInterface userInterface, Bet bet, String choidedBet) {
-		if (bet.betIsMade(choidedBet,myWheel)) {
-			userInterface.print("*** Congratulations :) You win ***");
-			return bet.getPayout();
-		} else {
-			userInterface.print("*** Sorry :( You lose ***");
-			return -1;
-		}
+	private boolean isWinningBet(Bet bet, String choidedBet) {
+		return  bet.betIsMade(choidedBet,myWheel);
 	}
 
 

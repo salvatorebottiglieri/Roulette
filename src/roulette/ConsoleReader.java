@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Provides variety of methods to simplify getting user input from console.
  * 
- * @author Robert C. Duvall
+ *
  */
 public class ConsoleReader implements UserInterface {
 	

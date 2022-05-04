@@ -10,14 +10,13 @@ import java.util.TreeSet;
  */
 public class Main {
 	public static void main(String[] args) {
-		Game game = new Game();
+		UserInterface userInterface = new ConsoleReader();
+		Game game = new Game(userInterface);
 		Gambler player = new Gambler("Robert", 1000);
 		Set<String> possibileBets = new TreeSet<>();
 		possibileBets.add("EvenAndOddBet");
 		possibileBets.add("RedAndBlackBet");
 		possibileBets.add("ThreeInARow");
-		UserInterface userInterface = new ConsoleReader();
-
 
 
 		System.out.println("Hello " + player.getName() + ", let's play "
@@ -25,7 +24,7 @@ public class Main {
 		System.out.println();
 
 		do {
-			game.play(player,possibileBets,userInterface);
+			game.play(player,possibileBets);
 		} while (player.isSolvent());
 
 		System.out.println();
